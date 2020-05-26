@@ -1,6 +1,6 @@
 call plug#begin('~/.nvim/plugged')
-Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'KeitaNakamura/neodark.vim'
+Plug 'dracula/vim', { 'as': 'dracula' } 
+Plug 'KeitaNakamura/neodark.vim' 
 Plug 'morhetz/gruvbox'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'jiangmiao/auto-pairs'
@@ -18,18 +18,19 @@ Plug 'kristijanhusak/defx-git'
 Plug 'junegunn/fzf.vim'
 Plug 'vhdirk/vim-cmake'
 Plug 'Yggdroot/indentLine'
+Plug 'Chiel92/vim-autoformat'
 call plug#end()
 
 let mapleader=' '
-inoremap jj <Esc>
-inoremap ww <Esc>:w<CR>
-inoremap wq <Esc>:wq<CR>
-inoremap fq <Esc>:q!<CR>
-inoremap qa <Esc>:wqa<CR>
-nnoremap ww <Esc>:w<CR>
-nnoremap wq <Esc>:wq<CR>
-nnoremap fq <Esc>:q!<CR>
-nnoremap qa <Esc>:wqa<CR>
+" inoremap jj <Esc>
+" inoremap ww <Esc>:w<CR>
+" inoremap wq <Esc>:wq<CR>
+" inoremap fq <Esc>:q!<CR>
+" inoremap qa <Esc>:wqa<CR>
+" nnoremap ww <Esc>:w<CR>
+" nnoremap wq <Esc>:wq<CR>
+" nnoremap fq <Esc>:q!<CR>
+" nnoremap qa <Esc>:wqa<CR>
 
 "检查文件类型
 filetype indent on
@@ -92,6 +93,8 @@ let g:neodark#use_256color = 1
 "suggest.timeout": 500,
 "suggest.minTriggerInputLength": 2    
 "suggest.snippetIndicator": "►" 
+
+"生成compile_commands.json
 nnoremap <Leader>cj :!cmake -H. -BDebug -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=YES && ln -sf Debug/compile_commands.json .
 
 "coc.nvim配置    
@@ -138,7 +141,7 @@ inoremap <silent><expr> <c-space> coc#refresh()
 " position. Coc only does snippet and additional edit on confirm.
 if has('patch8.1.1068')
   " Use `complete_info` if your (Neo)Vim version supports it.
-  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y> : "\<C-g>u\<CR>"
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 else
   imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 endif
@@ -169,11 +172,6 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
-
-" " Formatting selected code.
-" xmap <leader>f  <Plug>(coc-format-selected)
-" nmap <leader>f  <Plug>(coc-format-selected)
-noremap <leader>f gg=G
 
 augroup mygroup
   autocmd!
@@ -241,14 +239,6 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 "easymotion config
 nmap ss <Plug>(easymotion-s2)
 
-"asyncrun config
-nnoremap <silent> <F9> :AsyncTask file-build<CR>
-nnoremap <silent><f6> :AsyncTask project-run<cr>
-noremap <silent><f7> :AsyncTask project-build<cr>
-noremap <silent> <F5> :AsyncTask file-run<CR>
-
-let g:asyncrun_open = 8 
-
 "Shougo defx
 " 使用 ;e 切换显示文件浏览，使用 ;a 查找到当前文件位置
 let g:maplocalleader=';'
@@ -278,8 +268,8 @@ function! s:defx_my_settings() abort
                 \ defx#do_action('move')
     nnoremap <silent><buffer><expr> p
                 \ defx#do_action('paste')
-    nnoremap <silent><buffer><expr> i
-                \ defx#do_action('multi',[['drop','split']])
+    " nnoremap <silent><buffer><expr> i
+    "             \ defx#do_action('multi',[['drop','split']])
    nnoremap <silent><buffer><expr> o
                 \ defx#is_directory() ? 
                 \ defx#do_action('open_or_close_tree') : 
@@ -320,6 +310,17 @@ function! s:defx_my_settings() abort
 endfunction
 let g:defx_icons_enable_syntax_highlight = 1
 
-"python3 version
-" let g:python3_host_prog=expand('~/Anaconda/bin/python3.7')
-"
+" astyle 
+let g:formatdef_raysuner = '"astyle --style=attach --pad-oper"'
+let g:formatters_cpp = ['raysuner']
+let g:formatters_c = ['raysuner']
+nnoremap <F3> :Autoformat<CR>
+inoremap <F3> :Autoformat<CR>
+
+"asynctask.vim 
+let g:asyncrun_open = 10
+" let g:asynctasks_term_focus = 0
+let g:asynctasks_term_pos = 'tab'
+let g:asyncrun_rootmarks = ['.git', '.svn', '.root', '.project', '.hg']
+noremap <silent><f5> :AsyncTask file-run<cr>
+noremap <silent><f9> :AsyncTask file-build<cr>

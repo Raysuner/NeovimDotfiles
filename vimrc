@@ -2,6 +2,7 @@ call plug#begin('~/.nvim/plugged')
 Plug 'dracula/vim', { 'as': 'dracula' } 
 Plug 'KeitaNakamura/neodark.vim' 
 Plug 'morhetz/gruvbox'
+Plug 'tomasr/molokai'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'jiangmiao/auto-pairs'
 Plug 'vim-airline/vim-airline'
@@ -16,13 +17,13 @@ Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'kristijanhusak/defx-icons'
 Plug 'kristijanhusak/defx-git'
 Plug 'junegunn/fzf.vim'
-Plug 'vhdirk/vim-cmake'
 Plug 'Yggdroot/indentLine'
 Plug 'Chiel92/vim-autoformat'
+Plug 'octol/vim-cpp-enhanced-highlight'
 call plug#end()
 
 let mapleader=' '
-" inoremap jj <Esc>
+inoremap jj <Esc>
 " inoremap ww <Esc>:w<CR>
 " inoremap wq <Esc>:wq<CR>
 " inoremap fq <Esc>:q!<CR>
@@ -40,8 +41,6 @@ set number
 set nocompatible
 "可修改
 set modifiable
-"切换paste模式
-set pastetoggle=<F12>
 "设置系统粘贴板为默认的粘贴板
 set clipboard=unnamedplus
 "自动转换粘贴模式
@@ -57,7 +56,7 @@ endfunction
 syntax on
 set background=dark
 set termguicolors
-colorscheme neodark
+colorscheme dracula
 
 
 "在底部显示，当前处于命令模式还是插入模式
@@ -324,3 +323,11 @@ let g:asynctasks_term_pos = 'tab'
 let g:asyncrun_rootmarks = ['.git', '.svn', '.root', '.project', '.hg']
 noremap <silent><f5> :AsyncTask file-run<cr>
 noremap <silent><f9> :AsyncTask file-build<cr>
+
+"vim-cpp-enhanced-highlight
+let g:cpp_class_scope_highlight = 1
+let g:cpp_member_variable_highlight = 1
+let g:cpp_class_decl_highlight = 1
+let g:cpp_posix_standard = 1
+let g:cpp_experimental_simple_template_highlight = 1
+

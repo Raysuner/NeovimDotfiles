@@ -84,7 +84,6 @@ inoremap jj <Esc>
 "endfunc
 "" 自动将光标移动到文件末尾
 "autocmd BufNewfile * normal G
-"在底部显示，当前处于命令模式还是插入模式
 
 "检查文件类型
 filetype indent on
@@ -113,6 +112,7 @@ colorscheme dracula
 "设置背景透明，必须放在colorscheme语句后面,否则会失效
 hi Normal ctermbg=none guibg=none
 
+"在底部显示，当前处于命令模式还是插入模式
 set showmode
 "设置默认编码
 set encoding=utf-8
@@ -136,10 +136,6 @@ set ignorecase
 "set spell spelllang=en_us
 "不创建备份文件
 set nobackup
-
-"neodark.vim
-let g:neodark#terminal_transparent = 1
-let g:neodark#use_256color = 1
 
 "ccls配置
 "suggest.autoTrigger": "trigger"
@@ -262,8 +258,8 @@ omap af <Plug>(coc-funcobj-a)
 " Use <TAB> for selections ranges.
 " NOTE: Requires 'textDocument/selectionRange' support from the language server.
 " coc-tsserver, coc-python are the examples of servers that support it.
-nmap <silent> <TAB> <Plug>(coc-range-select)
-xmap <silent> <TAB> <Plug>(coc-range-select)
+" nmap <silent> <TAB> <Plug>(coc-range-select)
+" xmap <silent> <TAB> <Plug>(coc-range-select)
 
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
@@ -379,6 +375,7 @@ nnoremap <F3> :Autoformat<CR>
 inoremap <F3> :Autoformat<CR>
 
 "asynctask.vim
+nnoremap <silent> <leader>w :ccl<CR>
 let g:asyncrun_open = 8
 " let g:asynctasks_term_focus = 0
 let g:asynctasks_term_pos = 'tab'

@@ -1,4 +1,4 @@
-call plug#begin('~/.nvim/plugged')
+call plug#begin('~/.vim/plugged')
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'tomasr/molokai'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -147,9 +147,15 @@ set nobackup
 "生成compile_commands.json
 nnoremap <Leader>cj :!cmake -H. -BDebug -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=YES && ln -sf Debug/compile_commands.json .
 
+let g:LanguageClient_serverCommands = {
+    \ 'sh': ['bash-language-server', 'start']
+    \ }
+
 "coc.nvim配置
 let g:coc_global_extensions = [
     \ 'coc-json',
+    \ 'coc-python',
+    \ 'coc-snippets',
     \]
 " TextEdit might fail if hidden is not set.
 set hidden
@@ -372,11 +378,11 @@ let g:formatdef_raysuner = '"astyle --style=ansi --pad-oper"'
 let g:formatters_cpp = ['raysuner']
 let g:formatters_c = ['raysuner']
 nnoremap <F3> :Autoformat<CR>
-inoremap <F3> :Autoformat<CR>
+inoremap <F3> <Esc>:Autoformat<CR>
 
 "asynctask.vim
 nnoremap <silent> <leader>w :ccl<CR>
-let g:asyncrun_open = 8
+let g:asyncrun_open = 12
 " let g:asynctasks_term_focus = 0
 let g:asynctasks_term_pos = 'tab'
 let g:asyncrun_rootmarks = ['.git', '.svn', '.root', '.project', '.hg']

@@ -1,6 +1,7 @@
 call plug#begin('~/.vim/plugged')
 Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'tomasr/molokai'
+Plug 'lifepillar/vim-solarized8'
+Plug 'rakr/vim-one'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'jiangmiao/auto-pairs'
 Plug 'vim-airline/vim-airline'
@@ -23,72 +24,29 @@ Plug 'universal-ctags/ctags'
 Plug 'kien/ctrlp.vim'
 Plug 'majutsushi/tagbar'
 Plug 'brooth/far.vim'
+Plug 'mattn/emmet-vim'
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'npm install',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'markdown', 'vue', 'yaml', 'html'] }
+Plug 'pangloss/vim-javascript'
+Plug 'turbio/bracey.vim', {'do': 'npm install --prefix server'}
 call plug#end()
 
-let mapleader=' '
+let mapleader=" "
 inoremap jj <Esc>
-" inoremap ww <Esc>:w<CR>
-" inoremap wq <Esc>:wq<CR>
-" inoremap fq <Esc>:q!<CR>
-" inoremap qa <Esc>:wqa<CR>
-" nnoremap ww <Esc>:w<CR>
-" nnoremap wq <Esc>:wq<CR>
-" nnoremap fq <Esc>:q!<CR>
-" nnoremap qa <Esc>:wqa<CR>
-
-"autocmd BufNewFile *.c,*.cpp,*.sh,*.py,*.go exec ":call SetTitle()"                                                                                       
-""定义函数SetTitle，自动插入文件头
-"func SetTitle()
-"        "如果文件类型为.c或者.cpp文件
-"        if (&filetype == 'c' || &filetype == 'cpp')
-"                call setline(1, "/*************************************************************************")  
-"                call setline(2, "\ @Author: Raysuner")  
-"                call setline(3, "\ @Created Time : ".strftime("%c"))  
-"                call setline(4, "\ @File Name: ".expand("%"))  
-"                call setline(5, "\ @Description:")  
-"                call setline(6, " ************************************************************************/")  
-"                call setline(7,"")  
-"        endif
-"        "如果文件类型为.sh文件
-"        if &filetype == 'shell'  
-"                call setline(1, "\#!/bin/sh")
-"                call setline(2, "\# Author: Raysuner")
-"                call setline(3, "\# Created Time : ".strftime("%c"))
-"                call setline(4, "\# File Name: ".expand("%"))
-"                call setline(5, "\# Description:")
-"                call setline(6,"")
-"        endif
-"        "如果文件类型为.py文件
-"        if &filetype == 'python'
-"                call setline(1, "\#!/usr/bin/env python")
-"                call setline(2, "\# -*- coding=utf8 -*-")
-"                call setline(3, "\"\"\"")
-"                call setline(4, "\# Author: Raysuner")
-"                call setline(5, "\# Created Time : ".strftime("%c"))
-"                call setline(6, "\# File Name: ".expand("%"))
-"                call setline(7, "\# Description:")
-"                call setline(8, "\"\"\"")
-"                call setline(9,"")
-"        endif
-"        ""如果文件类型为.java文件
-"        "if &filetype == 'java'  
-"        "        call setline(1, "//coding=utf8")  
-"        "        call setline(2, "/**")  
-"        "        call setline(3, "\ *\ @Author: Raysuner")  
-"        "        call setline(4, "\ *\ @Created Time : ".strftime("%c"))  
-"        "        call setline(5, "\ *\ @File Name: ".expand("%"))  
-"        "        call setline(6, "\ *\ @Description:")  
-"        "        call setline(7, "\ */")  
-"        "        call setline(8,"")  
-"        "endif
-"endfunc
-"" 自动将光标移动到文件末尾
-"autocmd BufNewfile * normal G
+autocmd FileType php,python,c,bash,javascript,typescript,cpp set ai
+autocmd FileType php,python,c,bash,javascript,typescript,cpp set sw=4
+autocmd FileType php,python,c,bash,javascript,typescript,cpp set ts=4
+autocmd FileType php,python,c,bash,javascript,typescript,cpp set sts=4
+autocmd FileType html,css,xml set ai
+autocmd FileType html,css,xml set sw=2
+autocmd FileType html,css,xml set ts=2
+autocmd FileType html,css,xml set sts=2
 
 "检查文件类型
 filetype indent on
 "设置行号
-set number
+set nu
 "不与vi兼容
 set nocompatible
 "可修改
@@ -108,9 +66,20 @@ endfunction
 syntax on
 set background=dark
 set termguicolors
-colorscheme dracula
+
+if (has('nvim'))
+  let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
+endif
+if (has('termguicolors'))
+  set termguicolors
+endif
+
+let g:material_terminal_italics = 0
+let g:material_theme_style = 'palenight-community'
+colorscheme solarized8
+let g:airline_theme='one'
 "设置背景透明，必须放在colorscheme语句后面,否则会失效
-hi Normal ctermbg=none guibg=none
+"hi Normal ctermbg=none guibg=none
 
 "在底部显示，当前处于命令模式还是插入模式
 set showmode
@@ -145,7 +114,7 @@ set nobackup
 "suggest.snippetIndicator": "►"
 
 "生成compile_commands.json
-nnoremap <Leader>cj :!cmake -H. -BDebug -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=YES && ln -sf Debug/compile_commands.json .
+"nnoremap <Leader>cj :!cmake -H. -BDebug -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=YES && ln -sf Debug/compile_commands.json .
 
 let g:LanguageClient_serverCommands = {
     \ 'sh': ['bash-language-server', 'start']
@@ -155,7 +124,9 @@ let g:LanguageClient_serverCommands = {
 let g:coc_global_extensions = [
     \ 'coc-json',
     \ 'coc-python',
-    \ 'coc-snippets',
+    \ 'coc-html',
+    \ 'coc-tsserver',
+    \ 'coc-vetur',
     \]
 " TextEdit might fail if hidden is not set.
 set hidden
@@ -230,11 +201,11 @@ endfunction
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
+nmap <Leader>rn <Plug>(coc-rename)
 
 " Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+xmap <Leader>f  <Plug>(coc-format-selected)
+nmap <Leader>f  <Plug>(coc-format-selected)
 
 augroup mygroup
     autocmd!
@@ -245,14 +216,14 @@ augroup mygroup
 augroup end
 
 " Applying codeAction to the selected region.
-" Example: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
+" Example: `<Leader>aap` for current paragraph
+xmap <Leader>a  <Plug>(coc-codeaction-selected)
+nmap <Leader>a  <Plug>(coc-codeaction-selected)
 
 " Remap keys for applying codeAction to the current line.
-nmap <leader>ac  <Plug>(coc-codeaction)
+nmap <Leader>ac  <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
-nmap <leader>qf  <Plug>(coc-fix-current)
+nmap <Leader>qf  <Plug>(coc-fix-current)
 
 " Introduce function text object
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
@@ -312,7 +283,7 @@ nnoremap <silent> <LocalLeader>a
 
 call defx#custom#option('_', {
 	    \ 'columns': 'indent:git:icons:filename',
-	    \ 'winwidth': 25,
+	    \ 'winwidth': 30,
 	    \ 'split': 'vertical',
 	    \ 'direction': 'topleft',
 	    \ 'show_ignored_files': 0,
@@ -381,13 +352,14 @@ nnoremap <F3> :Autoformat<CR>
 inoremap <F3> <Esc>:Autoformat<CR>
 
 "asynctask.vim
-nnoremap <silent> <leader>w :ccl<CR>
+nnoremap <silent> <Leader>w :ccl<CR>
 let g:asyncrun_open = 12
 " let g:asynctasks_term_focus = 0
 let g:asynctasks_term_pos = 'tab'
 let g:asyncrun_rootmarks = ['.git', '.svn', '.root', '.project', '.hg']
 noremap <silent><f8> :AsyncTask file-run<cr>
 noremap <silent><f9> :AsyncTask file-build<cr>
+noremap <silent><Leader>as :AsyncStop<CR>
 
 "vim-cpp-enhanced-highlight
 let g:cpp_class_scope_highlight = 1
@@ -400,7 +372,7 @@ let g:python_host_prog = "/usr/bin/python2"
 let g:python3_host_prog = "/usr/bin/python3"
 
 "tagbar
-nnoremap <leader>t :TagbarToggle<CR>
+nnoremap <Leader>t :TagbarToggle<CR>
 
 "ctrlp
 let g:ctrlp_map = '<c-p>'
@@ -418,3 +390,16 @@ else
     let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
 endif
 
+"emmet
+let g:user_emmet_mode='i' "只能在插入模式下使用
+let g:user_emmet_install_global = 0  "只能在html和css的情况下使用
+autocmd FileType html,css EmmetInstall
+let g:user_emmet_leader_key=','
+
+"prettier
+nmap <Leader>p <Plug>(Prettier)
+let g:prettier#autoformat_require_pragma = 0
+au FileType css,scss let b:prettier_exec_cmd = "prettier-stylelint"
+
+"bracey
+nnoremap <Leader>b :Bracey<CR>

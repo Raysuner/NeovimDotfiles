@@ -10,6 +10,3 @@ let g:far#window_width=60
 let g:far#file_mask_favorites=['%:p', '**/*.*', '**/*.js', '**/*.py', '**/*.java', '**/*.css', '**/*.html', '**/*.vim', '**/*.cpp', '**/*.c', '**/*.h', ]
 let g:far#window_min_content_width=30
 let g:far#enable_undo=1
-
-nnoremap <Leader>f :Farr --source=vimgrep<cr>
-nnoremap <Leader>fp :Farr --source=rgnvim

@@ -30,8 +30,9 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-rhubarb'
     Plug 'junegunn/gv.vim'
-    "Motion
+    "Easy Motion 
     Plug 'justinmk/vim-sneak' 
+    "Project Manage
     Plug 'mhinz/vim-startify'
     "Coc complete   
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -45,5 +46,11 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     "Replace
     Plug 'ChristianChiarulli/far.vim'
     "Tabline
-    Plug 'mg979/vim-xtabline'
+    Plug 'romgrk/barbar.nvim'
+    "Vim-Icon
+    Plug 'kyazdani42/nvim-web-devicons'
+    "Live server
+    Plug 'turbio/bracey.vim'
+    "Whichkey
+    Plug 'liuchengxu/vim-which-key'
 call plug#end()

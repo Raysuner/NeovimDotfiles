@@ -9,10 +9,12 @@ endif
 call plug#begin('~/.config/nvim/autoload/plugged')
     " Better Syntax Support
     Plug 'sheerun/vim-polyglot'
-    " Auto pairs for '(' '[' '{'
-    Plug 'jiangmiao/auto-pairs'
+    " Auto pairs for '(' '[' '{' 
+    Plug 'jiangmiao/auto-pairs' 
     " Add one dark theme
     Plug 'joshdick/onedark.vim'
+    " Add Dogrun theme 
+    Plug 'wadackel/vim-dogrun'
     "Airline
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
@@ -53,4 +55,10 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'turbio/bracey.vim'
     "Whichkey
     Plug 'liuchengxu/vim-which-key'
+    "Emmet
+    Plug 'mattn/emmet-vim'    
+    "floaterm
+    Plug 'voldikss/vim-floaterm'
+    "multiple-cursors'
+    Plug 'terryma/vim-multiple-cursors'
 call plug#end()

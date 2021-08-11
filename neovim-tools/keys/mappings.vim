@@ -26,6 +26,7 @@ nnoremap <TAB> :bnext<CR>
 nnoremap <S-TAB> :bprevious<CR>
 
 " Alternate way to save
+inoremap <C-s> <Esc>:w<CR>
 nnoremap <C-s> :w<CR>
 " Alternate way to quit
 nnoremap <C-Q> :wq!<CR>
@@ -43,8 +44,5 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
-
-nnoremap <Leader>o o<Esc>^Da
-nnoremap <Leader>O O<Esc>^Da
 
 nnoremap <LocalLeader>h :noh<cr>

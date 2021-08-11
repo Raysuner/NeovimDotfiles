@@ -22,9 +22,6 @@
   // python config
   "python.linting.enabled": true,
   "python.linting.pylintEnabled": false,
-  "python.jediEnabled": false,
-  "python.venvFolders": ["/home/ztq/.conda/envs/normal"],
-
   "snippets.ultisnips.directories":
   [
     "UltiSnips",

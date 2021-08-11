@@ -24,13 +24,12 @@ autocmd  FileType which_key set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
 
 " Single mappings
-let g:which_key_map['/'] = [ '<Plug>NERDCommenterToggle'  , 'comment' ]
-let g:which_key_map['b'] = [ ':Buffers'                    , 'buffers list' ]
+let g:which_key_map['/'] = [ ':Commentary'                , 'comment' ]
+let g:which_key_map['o'] = [ ':Bracey'                    , 'live server' ]
 " let g:which_key_map['e'] = [ ':CocCommand explorer'       , 'explorer' ]
-let g:which_key_map['f'] = [ ':Farr --source=vimgrep<cr>' , 'find and replace' ]
+let g:which_key_map['f'] = [ ':Farr --source=vimgrep'     , 'find and replace' ]
 let g:which_key_map['F'] = [ ':Files'                     , 'search files' ]
 let g:which_key_map['r'] = [ ':Ranger'                    , 'ranger' ]
-let g:which_key_map['S'] = [ ':Startify'                  , 'start screen' ]
 let g:which_key_map['h'] = [ '<C-W>s'                     , 'split below' ]
 let g:which_key_map['v'] = [ '<C-W>v'                     , 'split right' ]
 
@@ -62,17 +61,33 @@ let g:which_key_map.b = {
     \'7' : [ ':BufferGoto 7', 'buffer 7' ],
     \'8' : [ ':BufferGoto 8', 'buffer 8' ],
     \'9' : [ ':BufferGoto 9', 'buffer 9' ],
-    \'f' : [ ':Buffers' , 'list buffers' ],
+    \'s' : [ ':Buffers' , 'list buffers' ],
     \'h' : [ ':BufferMovePrevious', 'move buffer previous' ],
     \'l' : [ ':BufferMoveNext', 'move buffer next' ],
     \'c' : [ ':BufferClose', 'close buffer' ],
+    \'o' : [ ':BufferCloseAllButCurrent', 'current buffer' ]
     \}
 
-let g:which_key_map.S = {
+let g:which_key_map.s = {
     \'name' : 'startify',
     \'l' : [ ':SLoad', 'load' ],
     \'c' : [ ':SClose', 'close' ],
     \'d' : [ ':SDelete', 'delete' ],
     \}
+
+let g:which_key_map.t = {
+      \ 'name' : '+terminal' ,
+      \ ';' : [':FloatermNew --wintype=popup --height=6'        , 'terminal'],
+      \ 'f' : [':FloatermNew fzf'                               , 'fzf'],
+      \ 'g' : [':FloatermNew lazygit'                           , 'git'],
+      \ 'd' : [':FloatermNew lazydocker'                        , 'docker'],
+      \ 'n' : [':FloatermNew node'                              , 'node'],
+      \ 'N' : [':FloatermNew nnn'                               , 'nnn'],
+      \ 'p' : [':FloatermNew python'                            , 'python'],
+      \ 'r' : [':FloatermNew ranger'                            , 'ranger'],
+      \ 't' : [':FloatermToggle'                                , 'toggle'],
+      \ 'y' : [':FloatermNew ytop'                              , 'ytop'],
+      \ 's' : [':FloatermNew ncdu'                              , 'ncdu'],
+      \ }
 " Register which key map
 call which_key#register('<Space>', "g:which_key_map")

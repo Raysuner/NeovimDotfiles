@@ -87,16 +87,6 @@ augroup mygroup
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
-" Applying codeAction to the selected region.
-" Example: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
-
-" Remap keys for applying codeAction to the current buffer.
-nmap <leader>ac  <Plug>(coc-codeaction)
-" Apply AutoFix to problem on the current line.
-nmap <leader>qf  <Plug>(coc-fix-current)
-
 " Map function and class text objects
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
 xmap if <Plug>(coc-funcobj-i)
@@ -138,7 +128,7 @@ nnoremap <silent><nowait> <space>lk  :<C-u>CocPrev<CR>
 "Install extensions
 let g:coc_global_extensions = [
     \ 'coc-json',
-    \ 'coc-python',
+    \ 'coc-pyright',
     \ 'coc-html',
     \ 'coc-tsserver',
     \ 'coc-vetur',
@@ -179,7 +169,7 @@ let g:coc_explorer_global_presets = {
 \   },
 \   'simplify': {
 \     'file-child-template': '[selection | clip | 1] [indent][icon | 1] [filename omitCenter 1]'
-\   }
+\   } 
 \ }
 
 nmap <LocalLeader>e :CocCommand explorer<CR>

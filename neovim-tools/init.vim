@@ -16,3 +16,5 @@ source $HOME/.config/nvim/plug-config/asyncrun.vim
 source $HOME/.config/nvim/plug-config/far.vim
 source $HOME/.config/nvim/plug-config/tabline.vim
 source $HOME/.config/nvim/plug-config/bracey.vim
+source $HOME/.config/nvim/plug-config/emmet.vim
+source $HOME/.config/nvim/plug-config/floaterm.vim

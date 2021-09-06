@@ -25,11 +25,7 @@ autocmd  FileType which_key set laststatus=0 noshowmode noruler
 
 " Single mappings
 let g:which_key_map['/'] = [ ':Commentary'                , 'comment' ]
-let g:which_key_map['o'] = [ ':Bracey'                    , 'live server' ]
-" let g:which_key_map['e'] = [ ':CocCommand explorer'       , 'explorer' ]
-let g:which_key_map['f'] = [ ':Farr --source=vimgrep'     , 'find and replace' ]
-let g:which_key_map['F'] = [ ':Files'                     , 'search files' ]
-let g:which_key_map['r'] = [ ':Ranger'                    , 'ranger' ]
+let g:which_key_map['r'] = [ ':Farr --source=vimgrep'     , 'find and replace' ]
 let g:which_key_map['h'] = [ '<C-W>s'                     , 'split below' ]
 let g:which_key_map['v'] = [ '<C-W>v'                     , 'split right' ]
 
@@ -69,15 +65,29 @@ let g:which_key_map.b = {
     \}
 
 let g:which_key_map.s = {
-    \'name' : 'startify',
+    \'name' : '+startify',
     \'l' : [ ':SLoad', 'load' ],
     \'c' : [ ':SClose', 'close' ],
     \'d' : [ ':SDelete', 'delete' ],
     \}
 
+let g:which_key_map.f = {
+    \'name' : '+fzf',
+    \'F' : [':Files' , 'list files'],
+    \'g' : [':GFiles', 'list git files'],
+    \'b' : [':Buffers', 'list buffers'],
+    \'c' : [':Colors', 'list colors'],
+    \'a' : [':Ag', 'Ag'],
+    \'r' : [':Rg', 'Rg'],
+    \'m' : [':Commits', 'list commits'],
+    \'h' : [':History:', 'list command history'],
+    \'H' : [':History/', 'search history'],
+    \'C' : [':Commands', 'list commands']
+    \}
+
 let g:which_key_map.t = {
       \ 'name' : '+terminal' ,
-      \ ';' : [':FloatermNew --wintype=popup --height=6'        , 'terminal'],
+      \ ';' : [':FloatermNew --wintype=popup --height=25'       , 'terminal'],
       \ 'f' : [':FloatermNew fzf'                               , 'fzf'],
       \ 'g' : [':FloatermNew lazygit'                           , 'git'],
       \ 'd' : [':FloatermNew lazydocker'                        , 'docker'],
@@ -89,5 +99,10 @@ let g:which_key_map.t = {
       \ 'y' : [':FloatermNew ytop'                              , 'ytop'],
       \ 's' : [':FloatermNew ncdu'                              , 'ncdu'],
       \ }
+
+let g:which_key_map.v = {
+      \ 'name' : '+multiple-cursors',
+      \ 'c'    : [':VMclear'                                   , 'clear'],
+      \}
 " Register which key map
 call which_key#register('<Space>', "g:which_key_map")

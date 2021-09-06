@@ -15,35 +15,33 @@
     }
   },
 
-
-  
-  "coc.preferences.formatOnSaveFiletypes": ["css", "markdown", "javascript", "graphql", "html", "yaml",  "json", "python"],
-
   // python config
-  "python.linting.enabled": true,
-  "python.linting.pylintEnabled": false,
-  "snippets.ultisnips.directories":
-  [
-    "UltiSnips",
-    "~/.config/nvim/utils/snips"
-  ],
+  "python.venvPath": "~/.conda/envs/normal",
+  "snippets.ultisnips.directories": ["UltiSnips", "~/.config/nvim/utils/snips"],
 
   "snippets.userSnippetsDirectory": "~/.config/nvim/snips",
   // explorer
   "explorer.width": 30,
   "explorer.icon.enableNerdfont": true,
+  "explorer.file.showHiddenFiles": true,
   "explorer.previewAction.onHover": false,
   "explorer.keyMappings.global": {
     "<cr>": ["expandable?", "expand", "open"],
     "v": "open:vsplit",
-    "d": "delete",
-    "r": "rename",
-    "ad": "addDirectory",
-    "c": "copyFile",
-    "af": "addFile"
+    "yp": "copyFilepath",
+    "yn": "copyFilename",
+    "yy": "copyFile",
+    "dd": "cutFile",
+    "p": "pasteFile",
+    "df": "delete",
+    "dF": "deleteForever",
+
+    "a": "addFile",
+    "A": "addDirectory",
+    "r": "rename"
   },
 
   //Prettier
   "prettier.semi": false,
-  "prettier.tabWidth": 4
+  "prettier.useTabs": true
 }

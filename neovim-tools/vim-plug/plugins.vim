@@ -9,8 +9,12 @@ endif
 call plug#begin('~/.config/nvim/autoload/plugged')
     " Better Syntax Support
     Plug 'sheerun/vim-polyglot'
+    "Indent Line
+    Plug 'Yggdroot/indentLine'
     " Auto pairs for '(' '[' '{' 
     Plug 'jiangmiao/auto-pairs' 
+    " Add dracula theme
+    Plug 'dracula/vim', { 'as': 'dracula' } 
     " Add one dark theme
     Plug 'joshdick/onedark.vim'
     " Add Dogrun theme 
@@ -51,8 +55,6 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'romgrk/barbar.nvim'
     "Vim-Icon
     Plug 'kyazdani42/nvim-web-devicons'
-    "Live server
-    Plug 'turbio/bracey.vim'
     "Whichkey
     Plug 'liuchengxu/vim-which-key'
     "Emmet
@@ -60,5 +62,5 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     "floaterm
     Plug 'voldikss/vim-floaterm'
     "multiple-cursors'
-    Plug 'terryma/vim-multiple-cursors'
+    Plug 'mg979/vim-visual-multi'
 call plug#end()
